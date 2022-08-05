@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Country } from '../../interfaces/pais.interfaces';
 import { PaisService } from '../../services/pais.service';
@@ -14,7 +14,8 @@ export class VerPaisComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private paisService: PaisService
+    private paisService: PaisService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,7 +25,9 @@ export class VerPaisComponent implements OnInit {
         (pais) => {
           this.pais = pais[0];
         },
-        (err) => {}
+        (err) => {
+          this.router.navigateByUrl('');
+        }
       );
   }
 }
