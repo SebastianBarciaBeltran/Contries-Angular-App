@@ -23,7 +23,6 @@ export class VerPaisComponent implements OnInit {
       .subscribe(
         (pais) => {
           this.pais = pais[0];
-          console.log(this.pais);
         },
         (err) => {}
       );
