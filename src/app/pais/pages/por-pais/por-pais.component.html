@@ -5,9 +5,24 @@
   <div class="col">
     <app-pais-input
       (onTermino)="buscar($event)"
-      (onTermino)="sugerencias($event)"
+      (onDebounce)="sugerencias($event)"
       placeHolder="Buscar país..."
     ></app-pais-input>
+    <ul class="list-group" *ngIf="isVisibleSugerencias">
+      <li
+        class="list-group-item list-group-item-action"
+        *ngFor="let p of paisesSugeridos"
+      >
+        <a [routerLink]="['/pais', p.ccn3]" class="nav-link">{{
+          p.name.common
+        }}</a>
+      </li>
+      <li class="list-group-item list-group-item-action">
+        <a class="nav-link" (click)="buscarSugerido(termino)">
+          Buscar : {{ termino }}</a
+        >
+      </li>
+    </ul>
   </div>
 </div>
 
